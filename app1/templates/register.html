@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ 
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="span" id="dymanic_text">
+                <span>Singup</span>
+        
+            </div>
+    
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+               
+                <input type="text" placeholder="Username" required name="username"><br>
+                <input type="text" placeholder="Email" required name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="Enter a valid email address"><br>
+                <input type="password" placeholder="Password" name="password" required  pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@#&!]).{8,}$" title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character ($@#&!)." <br>
+                <input type="password" placeholder="RepeatPassword" name="re_password" required><br>
+
+
+                {% comment %} Show Error message {% endcomment %}
+                {% for message in messages %}
+                    <div class="mg">{{ message }}</div>
+                {% endfor %}
+
+                <input type="submit" value="Register" class="sb">
+
+            </form>
+        </div>
+    <div class="im">
+        <img src="{% static 'images/login.jpg'%}" alt="img">
+    </div>
+    </div>
+    <script src="{%static 'js/main.js'%}"></script>
+
+</body>
+</html>
+
+
+
